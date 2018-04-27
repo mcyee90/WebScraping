@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv='X-UA-Compatible' content="ie=edge">
+    <title>Mars Data</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 2px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="jumbotron col-lg-12 text-center">
+            <h1>Mars Report</h1>
+            <p><a href="scrape" class="btn btn-primary btn-lg" role="button">Scrape</a></p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- <img src={{mars.source}} alt="Image of Mars"> -->
+                <h2>Mars Latest News</h2>
+                <h3>{{ mars[0].latest_news.news_title }}</h3>
+                <p>{{mars[0].latest_news.news_paragraph}}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <h2>Featured Mars Image</h2>
+                <img src= {{ mars[1].featured_image }} alt="Image of Mars" width="100%">
+            </div>
+
+            <div class="col-lg-4">
+                <div style="border:1px; border-style:solid; border-color:grey; padding: 1em;">
+                    <h4>Current Weather On Mars</h4>
+                    <p>{{ mars[2].weather }}</p>
+                </div>
+
+                <div class="table">
+                    <h3>Mars Facts</h3>
+                    <table style = "border: 1px solid grey">
+                        <tr>
+                            <th> </th>
+                            <th>value</th>
+                        </tr>
+                        <tr>
+                            <th>description</th>
+                            <th> </th>
+                        </tr>
+                        {% for key in mars[3].fact %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td>{{ mars[3].fact[key]}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <h2>Mars Hemispheres</h2>
+            {% for key in mars[4].img_url %}
+            <div class="col-lg-6" style="padding: 2px">
+                <div style="border:1px; border-style:solid; border-color:grey; padding: 1em;">
+                    <img src={{mars[4].img_url[key]}} alt=k width = "100%">
+                    <h4>{{key}}</h4>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</body>
+
+</html>
